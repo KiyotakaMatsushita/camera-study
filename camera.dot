@@ -1,0 +1,43 @@
+digraph G {
+    rankdir = "BT"
+    overlap=false
+	node [
+		fontname = "ヒラギノ角ゴ ProN W3";
+	]
+
+	edge [
+ 		color ="#aaaaaa";
+	]
+
+	写真[label="写真"]
+	絞り[label="絞り（有効レンズ口径の小ささ）"]
+	被写界深度[label="被写界深度"]
+	画角[label="画角の大きさ"]
+	ピント[label="ピント・ボケ"]
+
+	カメラ,イメージセンサ, ホワイトバランス, ISO感度, 手ブレ補正, 露出補正, シャッタースピード [shape=box, style="filled"]
+	レンズ,焦点距離, 絞り,F値,最短撮影距離,被写界深度 [shape=box, style="rounded,filled", color="#eeeeee"]
+
+	画角, 明るさ, 色, ピント,ブレ -> 写真[arrowhead = none]
+	被写体ブレ,手ブレ -> ブレ
+	焦点距離 -> 画角[label="−"]
+	被写界深度 -> ピント
+	F値 -> 被写界深度[label="＋"]
+	焦点距離 -> F値[label="＋"] 
+	絞り -> F値[headlabel="＋"]
+	絞り -> 最短撮影距離[label="＋"]
+	F値 -> 明るさ[headlabel="−"]
+	焦点距離 -> 最短撮影距離[headlabel="−"]
+	イメージセンサ -> 画角[label="＋"] 
+	ホワイトバランス -> 色
+	手ブレ補正 -> 手ブレ[label="−"]
+	ISO感度 -> 明るさ[label="＋"]
+	露出補正 -> 明るさ
+	シャッタースピード -> 手ブレ[label="−"] 
+	シャッタースピード -> 被写体ブレ[label="−"] 
+	シャッタースピード -> 明るさ[label="−"] 
+
+	{ rank = same; "写真";"カメラ"; "レンズ" }
+	{ rank = same; "画角"; "ピント"; "色"; "明るさ"; "ブレ" }
+
+}
